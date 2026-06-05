@@ -1,8 +1,34 @@
 # RECYCLE APOCALYPSE
 
+ガチャを回すたび、今日の資源が明日の希少品になるディストピアサバイバルMOD。
+9種類のアイテムをガチャテーブルに捧げ、Minecraft全アイテムから景品を得る代わりに、支払った素材はそのワールドのドロップから永久に消滅します。
+
 Minecraft Java Edition 26.1.2 / Fabric 向けの MOD 試作版です。
 
 ## 導入方法
+
+### 最短導入用URL
+
+- Fabric Loader インストーラー: https://fabricmc.net/use/installer/
+- Fabric API `0.149.1+26.1.2`: https://cdn.modrinth.com/data/P7dR8mSH/versions/BLz7ETCw/fabric-api-0.149.1%2B26.1.2.jar
+- RECYCLE APOCALYPSE `0.4.4`: https://github.com/raster0x2a/minecraft-mod-recycle-apocalypse/releases/download/v0.4.4/recycle-apocalypse-0.4.4.jar
+
+Fabric Loader を入れた後、Windows クライアントでは PowerShell に以下を貼り付けると `mods` フォルダへ必要な jar を配置できます。
+
+```powershell
+$mods = "$env:APPDATA\.minecraft\mods"
+New-Item -ItemType Directory -Force $mods | Out-Null
+Invoke-WebRequest "https://cdn.modrinth.com/data/P7dR8mSH/versions/BLz7ETCw/fabric-api-0.149.1%2B26.1.2.jar" -OutFile "$mods\fabric-api-0.149.1+26.1.2.jar"
+Invoke-WebRequest "https://github.com/raster0x2a/minecraft-mod-recycle-apocalypse/releases/download/v0.4.4/recycle-apocalypse-0.4.4.jar" -OutFile "$mods\recycle-apocalypse-0.4.4.jar"
+```
+
+Linux サーバーでは、サーバーディレクトリで以下を実行してください。
+
+```sh
+mkdir -p mods
+curl -L -o "mods/fabric-api-0.149.1+26.1.2.jar" "https://cdn.modrinth.com/data/P7dR8mSH/versions/BLz7ETCw/fabric-api-0.149.1%2B26.1.2.jar"
+curl -L -o "mods/recycle-apocalypse-0.4.4.jar" "https://github.com/raster0x2a/minecraft-mod-recycle-apocalypse/releases/download/v0.4.4/recycle-apocalypse-0.4.4.jar"
+```
 
 ### 1. Fabric Loader を入れる
 
@@ -27,7 +53,7 @@ Fabric API 26.1.2 対応版を `mods` フォルダに入れてください。
 ビルド済み jar は以下にあります。
 
 ```text
-build/libs/recycle-apocalypse-0.4.3.jar
+build/libs/recycle-apocalypse-0.4.4.jar
 ```
 
 この jar を Minecraft の `mods` フォルダに入れてください。
@@ -129,12 +155,12 @@ tools/build.sh
 成功すると、以下に jar が生成されます。
 
 ```text
-build/libs/recycle-apocalypse-0.4.3.jar
+build/libs/recycle-apocalypse-0.4.4.jar
 ```
 
 ## GitHub Releases
 
-`v0.4.3` のようなバージョンタグをpushすると、GitHub ActionsでMODをビルドし、対応するGitHub Releaseへ通常jarを添付します。
+`v0.4.4` のようなバージョンタグをpushすると、GitHub ActionsでMODをビルドし、対応するGitHub Releaseへ通常jarを添付します。
 
 `-sources.jar` はRelease添付対象から除外します。
 

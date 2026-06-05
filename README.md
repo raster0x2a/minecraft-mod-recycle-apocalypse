@@ -1,17 +1,43 @@
 # RECYCLE APOCALYPSE
 
+A dystopian survival gacha mod where every roll trades today's resources for tomorrow's scarcity.
+Feed 9 different items into the Gacha Table, win something from Minecraft's item pool, and permanently erase your payment from the world's drops.
+
 Minecraft Java Edition 26.1.2 / Fabric mod prototype.
 
 Japanese README: [README.ja.md](README.ja.md)
 
 ## Installation
 
+Download URLs:
+
+- Fabric Loader installer: https://fabricmc.net/use/installer/
+- Fabric API `0.149.1+26.1.2`: https://cdn.modrinth.com/data/P7dR8mSH/versions/BLz7ETCw/fabric-api-0.149.1%2B26.1.2.jar
+- RECYCLE APOCALYPSE `0.4.4`: https://github.com/raster0x2a/minecraft-mod-recycle-apocalypse/releases/download/v0.4.4/recycle-apocalypse-0.4.4.jar
+
+Windows client quick install after installing Fabric Loader:
+
+```powershell
+$mods = "$env:APPDATA\.minecraft\mods"
+New-Item -ItemType Directory -Force $mods | Out-Null
+Invoke-WebRequest "https://cdn.modrinth.com/data/P7dR8mSH/versions/BLz7ETCw/fabric-api-0.149.1%2B26.1.2.jar" -OutFile "$mods\fabric-api-0.149.1+26.1.2.jar"
+Invoke-WebRequest "https://github.com/raster0x2a/minecraft-mod-recycle-apocalypse/releases/download/v0.4.4/recycle-apocalypse-0.4.4.jar" -OutFile "$mods\recycle-apocalypse-0.4.4.jar"
+```
+
+Linux server quick install inside the server directory:
+
+```sh
+mkdir -p mods
+curl -L -o "mods/fabric-api-0.149.1+26.1.2.jar" "https://cdn.modrinth.com/data/P7dR8mSH/versions/BLz7ETCw/fabric-api-0.149.1%2B26.1.2.jar"
+curl -L -o "mods/recycle-apocalypse-0.4.4.jar" "https://github.com/raster0x2a/minecraft-mod-recycle-apocalypse/releases/download/v0.4.4/recycle-apocalypse-0.4.4.jar"
+```
+
 1. Install Fabric Loader for Minecraft Java Edition 26.1.2.
 2. Put Fabric API `0.149.1+26.1.2` or a compatible 26.1.2 build into your `mods` folder.
 3. Put this mod jar into your `mods` folder:
 
 ```text
-build/libs/recycle-apocalypse-0.4.3.jar
+build/libs/recycle-apocalypse-0.4.4.jar
 ```
 
 Typical Windows client mods folder:
@@ -41,7 +67,7 @@ tools/build.sh
 
 ## GitHub Releases
 
-Push a version tag such as `v0.4.3` to build the mod on GitHub Actions and attach the release jar to the matching GitHub Release.
+Push a version tag such as `v0.4.4` to build the mod on GitHub Actions and attach the release jar to the matching GitHub Release.
 
 The release jar excludes the `-sources.jar` artifact.
 
