@@ -11,7 +11,7 @@ Japanese README: [README.ja.md](README.ja.md)
 3. Put this mod jar into your `mods` folder:
 
 ```text
-build/libs/recycle-apocalypse-0.4.2.jar
+build/libs/recycle-apocalypse-0.4.3.jar
 ```
 
 Typical Windows client mods folder:
@@ -38,6 +38,12 @@ Build command:
 ```sh
 tools/build.sh
 ```
+
+## GitHub Releases
+
+Push a version tag such as `v0.4.3` to build the mod on GitHub Actions and attach the release jar to the matching GitHub Release.
+
+The release jar excludes the `-sources.jar` artifact.
 
 ## Phase 1 behavior
 

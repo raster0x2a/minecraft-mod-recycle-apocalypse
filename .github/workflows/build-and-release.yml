@@ -1,0 +1,68 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.5.1"
+
+      - name: Build
+        run: gradle --no-daemon -Djava.net.preferIPv4Stack=true build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: recycle-apocalypse-jar
+          path: |
+            build/libs/*.jar
+            !build/libs/*-sources.jar
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          VERSION="${TAG_NAME#v}"
+          JAR_PATH="build/libs/recycle-apocalypse-${VERSION}.jar"
+
+          if [ ! -f "$JAR_PATH" ]; then
+            echo "Expected release jar not found: $JAR_PATH"
+            ls -la build/libs
+            exit 1
+          fi
+
+          if ! gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            gh release create "$TAG_NAME" \
+              --title "RECYCLE APOCALYPSE ${TAG_NAME}" \
+              --notes "Built from ${GITHUB_SHA}."
+          fi
+
+          gh release upload "$TAG_NAME" "$JAR_PATH" --clobber

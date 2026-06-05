@@ -27,7 +27,7 @@ Fabric API 26.1.2 対応版を `mods` フォルダに入れてください。
 ビルド済み jar は以下にあります。
 
 ```text
-build/libs/recycle-apocalypse-0.4.2.jar
+build/libs/recycle-apocalypse-0.4.3.jar
 ```
 
 この jar を Minecraft の `mods` フォルダに入れてください。
@@ -129,8 +129,14 @@ tools/build.sh
 成功すると、以下に jar が生成されます。
 
 ```text
-build/libs/recycle-apocalypse-0.4.2.jar
+build/libs/recycle-apocalypse-0.4.3.jar
 ```
+
+## GitHub Releases
+
+`v0.4.3` のようなバージョンタグをpushすると、GitHub ActionsでMODをビルドし、対応するGitHub Releaseへ通常jarを添付します。
+
+`-sources.jar` はRelease添付対象から除外します。
 
 ## 26.1 系のビルド注意点
 
